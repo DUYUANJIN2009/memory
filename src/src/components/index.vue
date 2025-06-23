@@ -33,6 +33,17 @@
             </div>
         </div>
 
+        <!-- 旋转照片 -->
+        <div class="photo-movie-x">
+            <div class="photo-movie">
+                <div class="text-bg">
+                    <img :src="xingchendahai" alt="">
+                </div>
+                <PhotoCarousel :images="imgMovies" />
+            </div>
+        </div>
+
+
         <div class="messages">
             <h2>留言墙</h2>
             <div class="message-card" v-for="(msg, index) in messages" :key="index">
@@ -46,6 +57,8 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 
+import PhotoCarousel from './PhotoCarousel.vue'
+
 import 'viewerjs/dist/viewer.css'
 import { directive as viewerDirective } from 'v-viewer'
 
@@ -56,6 +69,8 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/effect-fade'
 
+import xingchendahai from '@/assets/images/xingchengdahai.png'
+
 import img1 from '@/assets/images/image3.jpg'
 import img2 from '@/assets/images/image5.jpg'
 import img6 from '@/assets/images/image6.jpg'
@@ -64,6 +79,15 @@ import img72 from '@/assets/images/image72.jpg'
 import img73 from '@/assets/images/image73.jpg'
 import img74 from '@/assets/images/image74.jpg'
 
+const imgMovies = ref([
+    img1,
+    img2,
+    img6,
+    img71,
+    img72,
+    img73,
+    img74
+])
 
 const mainTitle = ref('2025届三年级三班')
 
@@ -160,7 +184,7 @@ const messages = [
 }
 
 .timeline {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 
     .year-block {
         background: #fff8dc;
@@ -210,6 +234,34 @@ const messages = [
 
     }
 }
+
+.photo-movie-x {
+    position: relative;
+    width: 100%;
+    padding: 150px 0px;
+    margin-bottom: 10px;
+
+    .photo-movie {
+        position: absolute;
+        left: 0px;
+        margin-left: -19px;
+        top: 0px;
+        width: calc(100% + 38px);
+        height: 300px;
+
+        .text-bg {
+            position: absolute;
+            left: 0px;
+            top: 50%;
+            transform: translateY(-60%);
+
+            img {
+                width: 100%;
+            }
+        }
+    }
+}
+
 
 :deep(.swiper-wrapper) {
     display: flex;
