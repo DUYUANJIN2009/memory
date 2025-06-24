@@ -45,6 +45,11 @@
 
 
         <div class="messages">
+            <h2>同学寄语</h2>
+            <ClassmateBook :images="classmates"/>
+        </div>
+
+        <div class="messages">
             <h2>留言墙</h2>
             <div class="message-card" v-for="(msg, index) in messages" :key="index">
                 <p class="from">来自：{{ msg.from }}</p>
@@ -55,9 +60,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, reactive } from 'vue'
 
 import PhotoCarousel from './PhotoCarousel.vue'
+import ClassmateBook from './ClassmateBook.vue'
 
 import 'viewerjs/dist/viewer.css'
 import { directive as viewerDirective } from 'v-viewer'
@@ -86,8 +92,41 @@ const imgMovies = ref([
     img71,
     img72,
     img73,
+    img74,
+    img2,
+    img6,
+    img71,
+    img72,
+    img73,
     img74
 ])
+
+const classmates = reactive({
+    '张三': {
+        msg: '开心每一天',
+        src: img72,
+    },
+    '张三2': {
+        msg: '开心每一天',
+        src: img71,
+    },
+    '张三3': {
+        msg: '开心每一天',
+        src: img73,
+    },
+    '张三4': {
+        msg: '开心每一天',
+        src: img74,
+    },
+    '张三5': {
+        msg: '开心每一天',
+        src: img2,
+    },
+    '张三6': {
+        msg: '开心每一天',
+        src: img6,
+    },
+})
 
 const mainTitle = ref('2025届三年级三班')
 
@@ -273,6 +312,7 @@ const messages = [
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
 
     h2 {
         margin-bottom: 20px;
