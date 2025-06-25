@@ -44,7 +44,7 @@
         </div>
 
 
-        <div class="messages">
+        <div class="messages" style="position: relative;">
             <h2>同学寄语</h2>
             <ClassmateBook :images="classmates"/>
         </div>
@@ -102,8 +102,8 @@ const imgMovies = ref([
 ])
 
 const classmates = reactive({
-    '张三': {
-        msg: '开心每一天',
+    '张三1': {
+        msg: '开心心每一天天',
         src: img72,
     },
     '张三2': {
@@ -114,18 +114,7 @@ const classmates = reactive({
         msg: '开心每一天',
         src: img73,
     },
-    '张三4': {
-        msg: '开心每一天',
-        src: img74,
-    },
-    '张三5': {
-        msg: '开心每一天',
-        src: img2,
-    },
-    '张三6': {
-        msg: '开心每一天',
-        src: img6,
-    },
+    
 })
 
 const mainTitle = ref('2025届三年级三班')

@@ -1,5 +1,46 @@
 <template>
-    <section :style="`--n: ${catsArray.length}; --k: ${currentIndex}`">
+    <div class="container">
+        <div class="number">
+            {{ currentIndex + 1 }} / {{ imgNums }}
+        </div>
+        <div class="img-list">
+            <div class="img-box" v-for="(cat, i) in catsArray" :key="i"
+                :class="{ active: i === currentIndex, 'slide-out': currentIndex > i }"
+                :style="{ zIndex: catsArray.length - i, transform: `rotate(${cat.angle}deg)` }">
+                <div class="img">
+                    <img :src="cat.src" :style="{ transform: `rotate(${cat.angle}deg)` }" />
+                </div>
+                <!-- <div class="img-box" v-for="(cat, i) in catsArray" :key="i">
+                    <div class="img">
+                        <img :src="cat.src" :style="{ transform: `rotate(${cat.angle}deg)` }" />
+                    </div> -->
+            </div>
+        </div>
+        <div class="text">
+            <h2>{{ catsArray[currentIndex].name }}</h2>
+            <em>
+                {{ catsArray[currentIndex].msg }}
+                <div class="btns">
+                    <button class="button-3d" @click="prev">
+                        <div class="button-top">
+                            <span class="material-icons">❮</span>
+                        </div>
+                        <div class="button-bottom"></div>
+                        <div class="button-base"></div>
+                    </button>
+                    <button class="button-3d" @click="next">
+                        <div class="button-top">
+                            <span class="material-icons">❯</span>
+                        </div>
+                        <div class="button-bottom"></div>
+                        <div class="button-base"></div>
+                    </button>
+                </div>
+            </em>
+
+        </div>
+    </div>
+    <!-- <section :style="`--n: ${catsArray.length}; --k: ${currentIndex}`">
         <article v-for="(cat, i) in catsArray" :key="i" :style="`--i: ${i}; --a: ${cat.angle}deg`">
             <img :src="cat.src" />
             <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 10px">
@@ -11,11 +52,11 @@
             <button aria-label="previous" data-inc="-1" @click="changeIndex(1)"></button>
             <button aria-label="next" data-inc="1" @click="changeIndex(-1)"></button>
         </div>
-    </section>
+    </section> -->
 </template>
 
 <script setup>
-import { ref, defineProps } from 'vue';
+import { ref, defineProps, computed } from 'vue';
 
 const props = defineProps({
     images: {
@@ -24,6 +65,45 @@ const props = defineProps({
     }
 })
 
+const currentIndex = ref(0);
+
+const imgNums = computed(() => {
+    return catsArray.value.length || 1
+})
+
+const catsArray = ref([]);
+
+Object.entries(props.images).map(([name, { msg, src }]) => ({
+    name,
+    msg,
+    src,
+    angle: getRandomInRange(10, -10)
+})).forEach(item => {
+    catsArray.value.push(item)
+});
+
+function getRandomInRange(min, max) {
+    if (min > max) [min, max] = [max, min];
+    const range = max - min;
+    return Math.floor(Math.random() * range) + min;
+}
+
+const prev = () => {
+    if (currentIndex.value > 0) {
+        currentIndex.value--;
+    } else {
+        currentIndex.value = imgNums.value - 1;
+    }
+}
+
+const next = () => {
+    if (currentIndex.value < imgNums.value - 1) {
+        currentIndex.value++;
+    } else {
+        currentIndex.value = 0;
+    }
+}
+
 // const cats = {
 //     '张三': {
 //         msg: 'Panthera tigris',
@@ -31,217 +111,181 @@ const props = defineProps({
 //         desc: 'tiger in the water'
 //     },
 // };
-
-function rand(max, min, prc = 2) {
-    return +(min + (max - min) * Math.random()).toFixed(prc);
-}
-
-const catsArray = Object.entries(props.images).map(([name, { msg, src }]) => ({
-    name,
-    msg,
-    src,
-    angle: rand(15, -15)
-}));
-
-const currentIndex = ref(0);
-
-function changeIndex(delta) {
-    const N = catsArray.length;
-    currentIndex.value = (currentIndex.value + delta + N) % N;
-}
 </script>
 
 <style lang="scss" scoped>
-@charset "UTF-8";
-
-/* register these two so they can be transitioned */
-/* index of previous top item during the animation
- * after another has been selected */
-@property --p {
-    syntax: "<number>";
-    initial-value: 0;
-    inherits: true;
-}
-
-/* animated index of top item from previous to current */
-@property --v {
-    syntax: "<number>";
-    initial-value: 0;
-    inherits: true;
-}
-
-* {
-    margin: 0;
-}
-
-.controls {
-    display: flex;
-    justify-content: center;
-
-}
-
-section,
-article,
-button {
-    display: grid;
-}
-
-section {
-    height: 555px;
-    --p: var(--k);
-    --abs-p: abs(var(--k) - var(--p));
-    --end: clamp(0, var(--abs-p) - 1, 1);
-    --dir: calc((1 - 2*var(--end))*sign(var(--k) - var(--p)));
-    --fwd: calc(.5*(1 + var(--dir)));
-    --v: var(--k);
-    --abs-v: abs(var(--v) - var(--p));
-    --prg: calc(var(--abs-v)/(1 - var(--end) + var(--end)*(var(--n) - 1)));
-    grid-template: repeat(2, max-content) 1fr max-content/max-content 1fr;
-    place-self: center;
-    color: #f1f5f9;
-    font: 1em poppins, sans-serif;
-    counter-reset: k calc(1 + var(--k)) n var(--n);
-    transition: --p 0s 0.8s, --v 0.8s;
-}
-
-section::before {
-    grid-area: 1/2;
-    width: 3ch;
-    text-align: right;
-    content: counter(k) "/" counter(n);
-}
-
-@supports not (scale: Abs(-2)) {
-    section {
-        --abs-p: max(var(--k) - var(--p), var(--p) - var(--k));
-        --abs-v: max(var(--v) - var(--p), var(--p) - var(--v));
-    }
-}
-
-@supports not (scale: Sign(-2)) {
-    section {
-        --dir: clamp(-1, (var(--k) - var(--p))*100000, 1);
-    }
-}
-
-article {
+.container {
     display: flex;
     flex-direction: column;
-    /* absolute value difference between 
-   * currently top item index and current item index */
-    --abs-top: abs(var(--k) - var(--i));
-    /* not top item if the absoute value difference ≥ 1
-   * top if the difference is 0 */
-    --not-top: min(1, var(--abs-top));
-    /* top flag is the negation */
-    --top: calc(1 - var(--not-top));
-    /* difference between moving image index which is 
-   * previous top item index --p if going backwards, 
-   * current top item index --k if going forwards 
-   * and current item index --i */
-    --val-mov: ((1 - var(--fwd))*var(--p) + var(--fwd)*var(--k) - var(--i));
-    --abs-mov: abs(var(--val-mov));
-    /* not moving image if the absoute value difference > 1
-   * moving image if the difference is 0 */
-    --not-mov: min(1, var(--abs-mov));
-    /* moving flag is the negation */
-    --mov: calc(1 - var(--not-mov));
-    grid-area: 1/1/-1/-1;
-    /* stack to occupy entire parent grid */
-    grid-template: subgrid/subgrid;
-    /* and inherit template */
-    /* debatable whether z-index is the best way 
-   * maybe CSS 3D transforms would be a better idea */
-    /* depends on number of items, its own index and top item index */
-    z-index: mod(calc(var(--n) - 1 + var(--i) - var(--k)), var(--n));
-    /* transition z-index */
-    transition: z-index 0.8s cubic-bezier(1, -0.9, 0, 1.9);
-    /* this ridiculousness needed for Chrome without flag */
-}
+    justify-content: center;
 
-@supports not (scale: Abs(-2)) {
-    article {
-        --abs-top: max(var(--k) - var(--i), var(--i) - var(--k));
-        --abs-mov: max(var(--val-mov), -1*var(--val-mov));
+    .number {
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        font-style: italic;
+        font-family: 'Brush Script MT';
+        margin-bottom: 30px;
     }
-}
 
-h2,
-em {
-    color: #B9773B;
-    translate: 0 calc(var(--not-top)*1lh);
-    opacity: var(--top);
-    transition: 0.4s calc(var(--top)*.5*0.8s);
-    transition-property: translate, opacity;
-}
+    .img-list {
+        position: relative;
+        width: 100%;
+        height: 380px;
 
-h2 {
-    grid-area: 2/2;
-}
+        .img-box {
+            position: absolute;
+            width: 80%;
+            height: 100%;
+            left: 32px;
+            transition: transform 0.5s ease, opacity 0.5s ease;
 
-em {
-    grid-area: 3/2;
-}
+            &.slide-out {
+                transform: translateX(-120%) rotate(0deg) !important;
+                opacity: 0;
+            }
 
-img {
-    --sin: sin(var(--prg)*.5turn);
-    grid-area: 1/1/-1;
-    height: 400px;
-    width: 300px;
-    aspect-ratio: 1;
-    object-fit: cover;
-    border-radius: 0.75em;
-    box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
-    outline: 1px dashed #ffffff;
-    translate: calc(-150%*var(--mov)*sqrt(var(--sin)));
-    scale: 0.87;
-    rotate: calc((1 - var(--sin))*var(--a));
-}
+            &.active {
+                transform: translateX(0%) scale(1.05);
+                opacity: 1;
+                z-index: 100;
+            }
 
-div {
-    /* button wrapper */
-    display: flex;
-    gap: 2em;
-    grid-area: 4/2;
-    /* prevent button clicks during animation */
-    z-index: calc((1 - min(1, var(--abs-p)))*var(--n));
-}
+            .img {
+                width: 100%;
+                height: 350px;
+                margin-bottom: 30px;
 
-button {
-    /* prettify button */
-    --sgn: -1;
-    --prc: calc(var(--hov, 0)*100%);
-    --c: color-mix(in hsl, #818cf8 var(--prc), #52527a);
-    border: none;
-    width: 1lh;
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background: RGB(from var(--c) r g b/0.2);
-    color: color-mix(in hsl, #818cf8 var(--prc), currentcolor);
-    font: 900 2em/1.5 sans-serif;
-    transition: 0.3s ease-out;
-    transition-property: background-color, color;
-}
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
+    }
 
-button::before {
-    /* arrow, SVG likely better, whatever */
-    place-self: center;
-    border: solid 2px;
-    border-width: 2px 2px 0 0;
-    width: 35%;
-    aspect-ratio: 1;
-    translate: calc(var(--sgn)*-15%);
-    rotate: 45deg;
-    scale: var(--sgn);
-    color: #fff;
-    content: "";
-}
+    .text {
+        text-align: center;
+        padding: 0px 40px;
 
-button[data-inc="1"] {
-    --sgn: 1;
-}
+        h2 {
+            /* 同学名字样式 */
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+            /* 深蓝色-灰色，显得稳重 */
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
 
-button:is(:hover, :focus) {
-    --hov: 1;
+        em {
+            position: relative;
+            /* 寄语文字样式 */
+            display: block;
+            font-size: 16px;
+            font-style: italic;
+            color: #7f8c8d;
+            /* 柔和的灰色 */
+            line-height: 28px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+            .btns {
+                position: absolute;
+                width: calc(100% + 120px);
+                margin-left: -60px;
+                height: 80px;
+                left: 0px;
+                top: 50%;
+                transform: translateY(-50%);
+                display: flex;
+                justify-content: space-between;
+
+
+                .button-3d {
+                    -webkit-appearance: none;
+                    appearance: none;
+                    position: relative;
+                    border-width: 0;
+                    padding: 0 8px;
+                    width: 40px;
+                    height: 40px;
+                    box-sizing: border-box;
+                    background: transparent;
+                    font: inherit;
+                    cursor: pointer;
+                    margin: 10px;
+                    border-radius: 20px;
+                }
+
+                .button-top {
+                    transform: translateX(-4px);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    position: relative;
+                    z-index: 2;
+                    padding: 8px 16px;
+                    transform: translateY(0);
+                    color: #fff;
+                    background-image: linear-gradient(145deg, #ff7373, #F8B80D);
+                    text-shadow: 0 -1px rgba(0, 0, 0, 0.25);
+                    border-radius: 20px;
+                    transition: transform 0.3s, border-radius 0.3s, background 10s;
+                }
+
+                .button-3d:active .button-top {
+                    border-radius: 10px 10px 8px 8px / 8px;
+                    transform: translateY(2px);
+                    background-image: linear-gradient(145deg, #ff7373, #F8B80D);
+                }
+
+                .button-bottom {
+                    position: absolute;
+                    z-index: 1;
+                    bottom: 4px;
+                    right: -4px;
+                    border-radius: 20px;
+                    padding-top: 6px;
+                    width: calc(100% - 8px);
+                    height: calc(100% - 10px);
+                    background-image: linear-gradient(145deg, #F8D067, #F8B80D);
+                    box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.5);
+                    transition: border-radius 0.2s, padding-top 0.2s;
+                }
+
+                .button-base {
+                    position: absolute;
+                    z-index: 0;
+                    top: 4px;
+                    left: 0;
+                    border-radius: 20px;
+                    width: 100%;
+                    height: calc(100% - 4px);
+                    background-color: rgba(0, 0, 0, 0.15);
+                    box-shadow: 0 1px 1px 0 rgba(255, 255, 255, 0.75),
+                        inset 0 2px 2px rgba(0, 0, 0, 0.25);
+                    transition: border-radius 0.2s, padding-top 0.2s;
+                }
+
+                .button-3d:active .button-bottom {
+                    border-radius: 10px 10px 8px 8px / 8px;
+                    padding-top: 0;
+                }
+
+                .button-3d:active .button-base {
+                    border-radius: 10px 10px 8px 8px / 8px;
+                }
+
+            }
+        }
+    }
+
+
+
 }
 </style>
