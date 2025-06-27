@@ -19,7 +19,7 @@
         <div class="text">
             <h2>{{ catsArray[currentIndex].name }}</h2>
             <em>
-                {{ catsArray[currentIndex].msg }}
+                <!-- {{ catsArray[currentIndex].msg }} -->
                 <div class="btns">
                     <button class="button-3d" @click="prev">
                         <div class="button-top">
@@ -56,8 +56,9 @@
 </template>
 
 <script setup>
-import { ref, defineProps, computed } from 'vue';
+import { ref, defineProps, computed, defineEmits } from 'vue';
 
+const emits = defineEmits(['next', 'prev'])
 const props = defineProps({
     images: {
         type: Object,
@@ -89,6 +90,7 @@ function getRandomInRange(min, max) {
 }
 
 const prev = () => {
+    emits('prev')
     if (currentIndex.value > 0) {
         currentIndex.value--;
     } else {
@@ -97,6 +99,7 @@ const prev = () => {
 }
 
 const next = () => {
+    emits('next')
     if (currentIndex.value < imgNums.value - 1) {
         currentIndex.value++;
     } else {

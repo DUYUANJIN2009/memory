@@ -43,18 +43,17 @@
             </div>
         </div>
 
-
         <div class="messages" style="position: relative;">
-            <h2>同学寄语</h2>
-            <ClassmateBook :images="classmates"/>
-        </div>
-
-        <div class="messages">
-            <h2>留言墙</h2>
-            <div class="message-card" v-for="(msg, index) in messages" :key="index">
+            <div class="header">
+                <h1>毕业留言簿</h1>
+                <p>同窗数载，情谊长存。每一句祝福都是青春最珍贵的记忆。</p>
+            </div>
+            <ClassmateBook :images="classmates" @next="handleNext" @prev="handlePrev" />
+            <Messages ref="messagesRef" :messages="classmates" />
+            <!-- <div class="message-card" v-for="(msg, index) in messages" :key="index">
                 <p class="from">来自：{{ msg.from }}</p>
                 <p class="content">“{{ msg.content }}”</p>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
@@ -64,7 +63,9 @@ import { ref, onMounted, reactive } from 'vue'
 
 import PhotoCarousel from './PhotoCarousel.vue'
 import ClassmateBook from './ClassmateBook.vue'
+import Messages from './Messages.vue'
 
+const messagesRef = ref(null)
 import 'viewerjs/dist/viewer.css'
 import { directive as viewerDirective } from 'v-viewer'
 
@@ -77,23 +78,165 @@ import 'swiper/css/effect-fade'
 
 import xingchendahai from '@/assets/images/xingchengdahai.png'
 
-import img1 from '@/assets/images/image3.jpg'
-import img2 from '@/assets/images/image5.jpg'
+import img1 from '@/assets/images/image1.jpg'
+import img12 from '@/assets/images/image12.jpg'
+import img13 from '@/assets/images/image13.jpg'
+import img14 from '@/assets/images/image14.jpg'
+import img15 from '@/assets/images/image15.jpg'
+import img16 from '@/assets/images/image16.jpg'
+import img17 from '@/assets/images/image17.jpg'
+import img18 from '@/assets/images/image18.jpg'
+import img19 from '@/assets/images/image19.jpg'
+import img20 from '@/assets/images/image20.jpg'
+import img21 from '@/assets/images/image21.jpg'
+import img22 from '@/assets/images/image22.jpg'
+import img23 from '@/assets/images/image23.jpg'
+import img24 from '@/assets/images/image24.jpg'
+import img25 from '@/assets/images/image25.jpg'
+import img26 from '@/assets/images/image26.jpg'
+import img27 from '@/assets/images/image27.jpg'
+import img28 from '@/assets/images/image28.jpg'
+import img29 from '@/assets/images/image29.jpg'
+import img3 from '@/assets/images/image3.jpg'
+import img30 from '@/assets/images/image30.jpg'
+import img31 from '@/assets/images/image31.jpg'
+import img32 from '@/assets/images/image32.jpg'
+import img33 from '@/assets/images/image33.jpg'
+import img34 from '@/assets/images/image34.jpg'
+import img35 from '@/assets/images/image35.jpg'
+import img36 from '@/assets/images/image36.jpg'
+import img37 from '@/assets/images/image37.jpg'
+import img38 from '@/assets/images/image38.jpg'
+import img39 from '@/assets/images/image39.jpg'
+import img4 from '@/assets/images/image4.jpg'
+import img40 from '@/assets/images/image40.jpg'
+import img41 from '@/assets/images/image41.jpg'
+import img42 from '@/assets/images/image42.jpg'
+import img43 from '@/assets/images/image43.jpg'
+import img44 from '@/assets/images/image44.jpg'
+import img45 from '@/assets/images/image45.jpg'
+import img46 from '@/assets/images/image46.jpg'
+import img47 from '@/assets/images/image47.jpg'
+import img48 from '@/assets/images/image48.jpg'
+import img49 from '@/assets/images/image49.jpg'
+import img5 from '@/assets/images/image5.jpg'
+import img50 from '@/assets/images/image50.jpg'
+import img51 from '@/assets/images/image51.jpg'
+import img52 from '@/assets/images/image52.jpg'
+import img53 from '@/assets/images/image53.jpg'
+import img54 from '@/assets/images/image54.jpg'
+import img55 from '@/assets/images/image55.jpg'
+import img56 from '@/assets/images/image56.jpg'
+import img57 from '@/assets/images/image57.jpg'
+import img58 from '@/assets/images/image58.jpg'
+import img59 from '@/assets/images/image59.jpg'
 import img6 from '@/assets/images/image6.jpg'
+import img60 from '@/assets/images/image60.jpg'
+import img61 from '@/assets/images/image61.jpg'
+import img62 from '@/assets/images/image62.jpg'
+import img63 from '@/assets/images/image63.jpg'
+import img68 from '@/assets/images/image68.jpg'
+import img69 from '@/assets/images/image69.jpg'
+import img7 from '@/assets/images/image7.jpg'
 import img71 from '@/assets/images/image71.jpg'
 import img72 from '@/assets/images/image72.jpg'
 import img73 from '@/assets/images/image73.jpg'
 import img74 from '@/assets/images/image74.jpg'
+import img75 from '@/assets/images/image75.jpg'
+import img76 from '@/assets/images/image76.jpg'
+import img78 from '@/assets/images/image78.jpg'
+import img79 from '@/assets/images/image79.jpg'
+import img80 from '@/assets/images/image80.jpg'
+import img82 from '@/assets/images/image82.jpg'
+import img83 from '@/assets/images/image83.jpg'
+import img84 from '@/assets/images/image84.jpg'
+import img85 from '@/assets/images/image85.jpg'
+
+const allImage = [
+    { src: img1, name: 'image1' },
+    { src: img12, name: 'image12' },
+    { src: img13, name: 'image13' },
+    { src: img14, name: 'image14' },
+    { src: img15, name: 'image15' },
+    { src: img16, name: 'image16' },
+    { src: img17, name: 'image17' },
+    { src: img18, name: 'image18' },
+    { src: img19, name: 'image19' },
+    { src: img20, name: 'image20' },
+    { src: img21, name: 'image21' },
+    { src: img22, name: 'image22' },
+    { src: img23, name: 'image23' },
+    { src: img24, name: 'image24' },
+    { src: img25, name: 'image25' },
+    { src: img26, name: 'image26' },
+    { src: img27, name: 'image27' },
+    { src: img28, name: 'image28' },
+    { src: img29, name: 'image29' },
+    { src: img3, name: 'image3' },
+    { src: img30, name: 'image30' },
+    { src: img31, name: 'image31' },
+    { src: img32, name: 'image32' },
+    { src: img33, name: 'image33' },
+    { src: img34, name: 'image34' },
+    { src: img35, name: 'image35' },
+    { src: img36, name: 'image36' },
+    { src: img37, name: 'image37' },
+    { src: img38, name: 'image38' },
+    { src: img39, name: 'image39' },
+    { src: img4, name: 'image4' },
+    { src: img40, name: 'image40' },
+    { src: img41, name: 'image41' },
+    { src: img42, name: 'image42' },
+    { src: img43, name: 'image43' },
+    { src: img44, name: 'image44' },
+    { src: img45, name: 'image45' },
+    { src: img46, name: 'image46' },
+    { src: img47, name: 'image47' },
+    { src: img48, name: 'image48' },
+    { src: img49, name: 'image49' },
+    { src: img5, name: 'image5' },
+    { src: img50, name: 'image50' },
+    { src: img51, name: 'image51' },
+    { src: img52, name: 'image52' },
+    { src: img53, name: 'image53' },
+    { src: img54, name: 'image54' },
+    { src: img55, name: 'image55' },
+    { src: img56, name: 'image56' },
+    { src: img57, name: 'image57' },
+    { src: img58, name: 'image58' },
+    { src: img59, name: 'image59' },
+    { src: img6, name: 'image6' },
+    { src: img60, name: 'image60' },
+    { src: img61, name: 'image61' },
+    { src: img62, name: 'image62' },
+    { src: img63, name: 'image63' },
+    { src: img68, name: 'image68' },
+    { src: img69, name: 'image69' },
+    { src: img7, name: 'image7' },
+    { src: img71, name: 'image71' },
+    { src: img72, name: 'image72' },
+    { src: img73, name: 'image73' },
+    { src: img74, name: 'image74' },
+    { src: img75, name: 'image75' },
+    { src: img76, name: 'image76' },
+    { src: img78, name: 'image78' },
+    { src: img79, name: 'image79' },
+    { src: img80, name: 'image80' },
+    { src: img82, name: 'image82' },
+    { src: img83, name: 'image83' },
+    { src: img84, name: 'image84' },
+    { src: img85, name: 'image85' }
+]
 
 const imgMovies = ref([
     img1,
-    img2,
+    img12,
     img6,
     img71,
     img72,
     img73,
     img74,
-    img2,
+    img12,
     img6,
     img71,
     img72,
@@ -114,9 +257,19 @@ const classmates = reactive({
         msg: '开心每一天',
         src: img73,
     },
-    
+
 })
 
+const handleNext = () => {
+    if(messagesRef.value){
+        messagesRef.value.nextMessage()
+    }
+}
+const handlePrev = () => {
+    if(messagesRef.value){
+        messagesRef.value.prevMessage()
+    }
+}
 const mainTitle = ref('2025届三年级三班')
 
 const mainPhoto = [
@@ -132,7 +285,7 @@ const memories = [
     {
         year: '2022 初一',
         events: [
-            { title: '开学报到，第一次见面', images: [img1, img2] },
+            { title: '开学报到，第一次见面', images: [img1, img12] },
             { title: '春游烧烤，集体大笑', images: [img1] },
             { title: '期末考试，第一次拼搏', images: [img1] }
         ],
@@ -155,11 +308,11 @@ const memories = [
     },
 ];
 
-const messages = [
-    { from: '张明', content: '三年真的很快，愿你前程似锦！' },
-    { from: '李倩', content: '下次见面，希望我们都更优秀~' },
-    { from: '王伟', content: '永远记得你讲笑话的样子，哈哈哈！' },
-];
+// const messages = ref([
+//     { from: '张明', content: '三年真的很快，愿你前程似锦！' },
+//     { from: '李倩', content: '下次见面，希望我们都更优秀~' },
+//     { from: '王伟', content: '永远记得你讲笑话的样子，哈哈哈！' },
+// ]);
 </script>
 
 <style lang="scss" scoped>
@@ -302,6 +455,28 @@ const messages = [
     border-radius: 12px;
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
+
+    .header {
+        text-align: center;
+        margin-bottom: 40px;
+
+        h1 {
+            font-size: 36px;
+            font-weight: bold;
+            color: #4b3f72;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            font-size: 18px;
+            color: #6a5a95;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+    }
+
 
     h2 {
         margin-bottom: 20px;
