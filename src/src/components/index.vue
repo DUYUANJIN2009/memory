@@ -152,6 +152,25 @@ import img83 from '@/assets/images/image83.jpg'
 import img84 from '@/assets/images/image84.jpg'
 import img85 from '@/assets/images/image85.jpg'
 
+import person1 from '@/assets/images/personal/image1.jpg'
+
+import person4  from '@/assets/images/personal/image4.jpg'
+import person5  from '@/assets/images/personal/image5.jpg'
+import person6  from '@/assets/images/personal/image6.jpg'
+import person7  from '@/assets/images/personal/image7.jpg'
+import person8  from '@/assets/images/personal/image8.jpg'
+import person9  from '@/assets/images/personal/image9.jpg'
+import person10  from '@/assets/images/personal/image10.jpg'
+import person11  from '@/assets/images/personal/image11.jpg'
+
+import person13  from '@/assets/images/personal/image13.jpg'
+import person14  from '@/assets/images/personal/image14.jpg'
+import person15  from '@/assets/images/personal/image15.jpg'
+
+import person17  from '@/assets/images/personal/image17.jpg'
+
+import person19  from '@/assets/images/personal/image19.jpg'
+
 const allImage = [
     { src: img1, name: 'image1' },
     { src: img12, name: 'image12' },
@@ -245,28 +264,88 @@ const imgMovies = ref([
 ])
 
 const classmates = reactive({
-    '张三1': {
-        msg: '开心心每一天天',
-        src: img72,
+    '董涵宇': {
+        msg: '河马真帅',
+        src: person1,
     },
-    '张三2': {
-        msg: '开心每一天',
+    '李梦涵': {
+        msg: '×&%￥#@（←此处省略豆包生成的）…… 无论走到哪里，请记得：山高水长，怕什么来不及，慌什么到不了，人生自有花期。（哈哈哈，豆包太给力了……）',
         src: img71,
     },
-    '张三3': {
-        msg: '开心每一天',
-        src: img73,
+    '倪依琪': {
+        msg: '大家好，我们一起度过了三年，有喜怒哀乐，有悲欢离合，在这里祝大家天天开心，前程似锦，毕业快乐。',
+        src: person11,
+    },
+    '金子涵': {
+        msg: '毕业不是终点，我们顶峰相见！',
+        src: person4,
+    },
+    '冯思齐': {
+        msg: '愿你在人生的旅途中，始终保持初心，勇敢前行。',
+        src: person5,
+    },
+    '王雨洁': {
+        msg: '永远做自己的太阳让自己充满晴天 许你自由 愿你无忧',
+        src: person6,
+    },
+    '周莹': {
+        msg: '笔渡星霜未改色 ，舟过山海自长明',
+        src: person7,
+    },
+    '邓国强': {
+        msg: '你好',
+        src: person8,
+    },
+    '施从余': {
+        msg: '毕业是短暂的告别，愿我们在更高处重逢。',
+        src: person9,
+    },
+    '宣胜煌': {
+        msg: '祝大家过自己想要的生活吧，然后开心最重要',
+        src: person10,
+    },
+    '顾欣彤': {
+        msg: '初中生活即将画上句号，但我们的友情永远不会结束。愿你在未来的日子里，继续保持对生活的热爱和对理想的执着。无论遇到什么困难，都要相信自己，勇敢前行。我会永远记得你的好，也期待你未来的精彩！',
+        src: img1,
+    },
+    '戴诗涵': {
+        msg: '我们都能拥有我们心中的美好生活！',
+        src: person13,
+    },
+    '夏启焱': {
+        msg: 'Happy every day!',
+        src: person14,
+    },
+    '翟仕博': {
+        msg: '我爱Ghost，keengan，Koing，加强青水，（随便说几句）希望各位在后面的时间里呢开心，快乐，做最好自己，还有我爱Ghost',
+        src: person15,
+    },
+    '冯煜哲': {
+        msg: '还没过过父亲节',
+        src: img1,
+    },
+    '章菲涵': {
+        msg: '万语难尽涩于口，祈尔繁芜常盛夏愿此去披荆斩棘，诸事顺利，万事顺遂',
+        src: person17,
+    },
+    '严基瑞': {
+        msg: '三年并肩，少年远航。愿携星光，奔赴下一程晴朗。',
+        src: img1,  
+    },
+    '舒湘芙': {
+        msg: '阿巴阿巴阿巴',
+        src: person19,
     },
 
 })
 
 const handleNext = () => {
-    if(messagesRef.value){
+    if (messagesRef.value) {
         messagesRef.value.nextMessage()
     }
 }
 const handlePrev = () => {
-    if(messagesRef.value){
+    if (messagesRef.value) {
         messagesRef.value.prevMessage()
     }
 }
