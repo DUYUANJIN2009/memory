@@ -4,6 +4,33 @@ import EnvelopeComponent from '@/components/EnvelopeComponent.vue'
 import arrowDownSvg from '@/components/icon/arrow-down.vue'
 import CoverBody from '@/components/index.vue'
 
+import img12 from '@/assets/images/verify/1.jpg'
+import img13 from '@/assets/images/verify/2.jpg'
+import img14 from '@/assets/images/verify/3.jpg'
+
+import SlideVerify from 'vue3-slide-verify'
+import 'vue3-slide-verify/dist/style.css'
+
+const showVerify = ref(false) // 控制是否展示滑块
+const verifySuccess = ref(false) // 滑块是否通过验证
+
+const yanzhengimgs = [img12, img13, img14]
+// 滑块验证成功后的回调
+const onVerifySuccess = () => {
+  verifySuccess.value = true
+  showVerify.value = false
+  open.value = true
+}
+
+// 验证失败或重试
+const onFail = () => {
+  verifySuccess.value = false
+}
+
+const onAgain = () => {
+  block.value?.refresh()
+}
+
 const showImage = ref(false)
 const hideText = ref(true)
 
@@ -35,9 +62,16 @@ const onScroll = () => {
   }
 }
 
+// const handleBegin = () => {
+//   console.log("动画开始");
+//   open.value = true
+// }
 const handleBegin = () => {
-  console.log("动画开始");
-  open.value = true
+  if (!verifySuccess.value) {
+    showVerify.value = true // 显示滑块
+  } else {
+    open.value = true
+  }
 }
 
 onMounted(() => {
@@ -70,8 +104,31 @@ onUnmounted(() => {
       <arrowDownSvg />
     </div>
   </header>
+  <!-- <main>
+    <EnvelopeComponent @begin="handleBegin" />
+    <transition name="expand">
+      <div v-if="open" class="cover">
+        <CoverBody />
+      </div>
+    </transition>
+  </main> -->
   <main>
     <EnvelopeComponent @begin="handleBegin" />
+
+    <!-- 滑块验证 -->
+    <div v-if="showVerify" class="slider-verify">
+      <slide-verify
+        :imgs="yanzhengimgs"
+        ref="block"
+        slider-text="向右滑动验证"
+        :accuracy="1"
+        @success="onVerifySuccess"
+        @fail="onFail"
+        @again="onAgain"
+      />
+    </div>
+
+    <!-- 验证通过后展示内容 -->
     <transition name="expand">
       <div v-if="open" class="cover">
         <CoverBody />
@@ -81,6 +138,17 @@ onUnmounted(() => {
 </template>
 
 <style lang="scss" scoped>
+.slider-verify {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2000;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
 /* 头部样式 */
 header {
   background: linear-gradient(135deg, #112d4e, #3f72af);

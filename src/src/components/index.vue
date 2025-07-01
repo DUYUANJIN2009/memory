@@ -352,8 +352,11 @@ const handlePrev = () => {
 const mainTitle = ref('2025届三年级三班')
 
 const mainPhoto = [
-    img1,
+    img3,
+    img5,
     img6,
+    img50,
+    img69,
     img71,
     img72,
     img73,
