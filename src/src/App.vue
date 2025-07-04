@@ -3,6 +3,7 @@ import { onMounted, onUnmounted, ref } from 'vue'
 import EnvelopeComponent from '@/components/EnvelopeComponent.vue'
 import arrowDownSvg from '@/components/icon/arrow-down.vue'
 import CoverBody from '@/components/index.vue'
+import music from '@/components/music.vue'
 
 import img12 from '@/assets/images/verify/1.jpg'
 import img13 from '@/assets/images/verify/2.jpg'
@@ -135,6 +136,7 @@ onUnmounted(() => {
       </div>
     </transition>
   </main>
+  <music />
 </template>
 
 <style lang="scss" scoped>
@@ -279,7 +281,7 @@ main {
     top: 0px;
     left: 0px;
     background-color: #fffffd;
-    z-index: 9999;
+    z-index: 999;
   }
 }
 </style>

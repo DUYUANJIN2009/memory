@@ -154,98 +154,98 @@ import img85 from '@/assets/images/image85.jpg'
 
 import person1 from '@/assets/images/personal/image1.jpg'
 
-import person4  from '@/assets/images/personal/image4.jpg'
-import person5  from '@/assets/images/personal/image5.jpg'
-import person6  from '@/assets/images/personal/image6.jpg'
-import person7  from '@/assets/images/personal/image7.jpg'
-import person8  from '@/assets/images/personal/image8.jpg'
-import person9  from '@/assets/images/personal/image9.jpg'
-import person10  from '@/assets/images/personal/image10.jpg'
-import person11  from '@/assets/images/personal/image11.jpg'
+import person4 from '@/assets/images/personal/image4.jpg'
+import person5 from '@/assets/images/personal/image5.jpg'
+import person6 from '@/assets/images/personal/image6.jpg'
+import person7 from '@/assets/images/personal/image7.jpg'
+import person8 from '@/assets/images/personal/image8.jpg'
+import person9 from '@/assets/images/personal/image9.jpg'
+import person10 from '@/assets/images/personal/image10.jpg'
+import person11 from '@/assets/images/personal/image11.jpg'
 
-import person13  from '@/assets/images/personal/image13.jpg'
-import person14  from '@/assets/images/personal/image14.jpg'
-import person15  from '@/assets/images/personal/image15.jpg'
+import person13 from '@/assets/images/personal/image13.jpg'
+import person14 from '@/assets/images/personal/image14.jpg'
+import person15 from '@/assets/images/personal/image15.jpg'
+import person16 from '@/assets/images/personal/image16.jpg'
+import person17 from '@/assets/images/personal/image17.jpg'
 
-import person17  from '@/assets/images/personal/image17.jpg'
+import person19 from '@/assets/images/personal/image19.jpg'
 
-import person19  from '@/assets/images/personal/image19.jpg'
-
-const allImage = [
-    { src: img1, name: 'image1' },
-    { src: img12, name: 'image12' },
-    { src: img13, name: 'image13' },
-    { src: img14, name: 'image14' },
-    { src: img15, name: 'image15' },
-    { src: img16, name: 'image16' },
-    { src: img17, name: 'image17' },
-    { src: img18, name: 'image18' },
-    { src: img19, name: 'image19' },
-    { src: img20, name: 'image20' },
-    { src: img21, name: 'image21' },
-    { src: img22, name: 'image22' },
-    { src: img23, name: 'image23' },
-    { src: img24, name: 'image24' },
-    { src: img25, name: 'image25' },
-    { src: img26, name: 'image26' },
-    { src: img27, name: 'image27' },
-    { src: img28, name: 'image28' },
-    { src: img29, name: 'image29' },
-    { src: img3, name: 'image3' },
-    { src: img30, name: 'image30' },
-    { src: img31, name: 'image31' },
-    { src: img32, name: 'image32' },
-    { src: img33, name: 'image33' },
-    { src: img34, name: 'image34' },
-    { src: img35, name: 'image35' },
-    { src: img36, name: 'image36' },
-    { src: img37, name: 'image37' },
-    { src: img38, name: 'image38' },
-    { src: img39, name: 'image39' },
-    { src: img4, name: 'image4' },
-    { src: img40, name: 'image40' },
-    { src: img41, name: 'image41' },
-    { src: img42, name: 'image42' },
-    { src: img43, name: 'image43' },
-    { src: img44, name: 'image44' },
-    { src: img45, name: 'image45' },
-    { src: img46, name: 'image46' },
-    { src: img47, name: 'image47' },
-    { src: img48, name: 'image48' },
-    { src: img49, name: 'image49' },
-    { src: img5, name: 'image5' },
-    { src: img50, name: 'image50' },
-    { src: img51, name: 'image51' },
-    { src: img52, name: 'image52' },
-    { src: img53, name: 'image53' },
-    { src: img54, name: 'image54' },
-    { src: img55, name: 'image55' },
-    { src: img56, name: 'image56' },
-    { src: img57, name: 'image57' },
-    { src: img58, name: 'image58' },
-    { src: img59, name: 'image59' },
-    { src: img6, name: 'image6' },
-    { src: img60, name: 'image60' },
-    { src: img61, name: 'image61' },
-    { src: img62, name: 'image62' },
-    { src: img63, name: 'image63' },
-    { src: img68, name: 'image68' },
-    { src: img69, name: 'image69' },
-    { src: img7, name: 'image7' },
-    { src: img71, name: 'image71' },
-    { src: img72, name: 'image72' },
-    { src: img73, name: 'image73' },
-    { src: img74, name: 'image74' },
-    { src: img75, name: 'image75' },
-    { src: img76, name: 'image76' },
-    { src: img78, name: 'image78' },
-    { src: img79, name: 'image79' },
-    { src: img80, name: 'image80' },
-    { src: img82, name: 'image82' },
-    { src: img83, name: 'image83' },
-    { src: img84, name: 'image84' },
-    { src: img85, name: 'image85' }
-]
+// const allImage = [
+//     { src: img1, name: 'image1' },
+//     { src: img12, name: 'image12' },
+//     { src: img13, name: 'image13' },
+//     { src: img14, name: 'image14' },
+//     { src: img15, name: 'image15' },
+//     { src: img16, name: 'image16' },
+//     { src: img17, name: 'image17' },
+//     { src: img18, name: 'image18' },
+//     { src: img19, name: 'image19' },
+//     { src: img20, name: 'image20' },
+//     { src: img21, name: 'image21' },
+//     { src: img22, name: 'image22' },
+//     { src: img23, name: 'image23' },
+//     { src: img24, name: 'image24' },
+//     { src: img25, name: 'image25' },
+//     { src: img26, name: 'image26' },
+//     { src: img27, name: 'image27' },
+//     { src: img28, name: 'image28' },
+//     { src: img29, name: 'image29' },
+//     { src: img3, name: 'image3' },
+//     { src: img30, name: 'image30' },
+//     { src: img31, name: 'image31' },
+//     { src: img32, name: 'image32' },
+//     { src: img33, name: 'image33' },
+//     { src: img34, name: 'image34' },
+//     { src: img35, name: 'image35' },
+//     { src: img36, name: 'image36' },
+//     { src: img37, name: 'image37' },
+//     { src: img38, name: 'image38' },
+//     { src: img39, name: 'image39' },
+//     { src: img4, name: 'image4' },
+//     { src: img40, name: 'image40' },
+//     { src: img41, name: 'image41' },
+//     { src: img42, name: 'image42' },
+//     { src: img43, name: 'image43' },
+//     { src: img44, name: 'image44' },
+//     { src: img45, name: 'image45' },
+//     { src: img46, name: 'image46' },
+//     { src: img47, name: 'image47' },
+//     { src: img48, name: 'image48' },
+//     { src: img49, name: 'image49' },
+//     { src: img5, name: 'image5' },
+//     { src: img50, name: 'image50' },
+//     { src: img51, name: 'image51' },
+//     { src: img52, name: 'image52' },
+//     { src: img53, name: 'image53' },
+//     { src: img54, name: 'image54' },
+//     { src: img55, name: 'image55' },
+//     { src: img56, name: 'image56' },
+//     { src: img57, name: 'image57' },
+//     { src: img58, name: 'image58' },
+//     { src: img59, name: 'image59' },
+//     { src: img6, name: 'image6' },
+//     { src: img60, name: 'image60' },
+//     { src: img61, name: 'image61' },
+//     { src: img62, name: 'image62' },
+//     { src: img63, name: 'image63' },
+//     { src: img68, name: 'image68' },
+//     { src: img69, name: 'image69' },
+//     { src: img7, name: 'image7' },
+//     { src: img71, name: 'image71' },
+//     { src: img72, name: 'image72' },
+//     { src: img73, name: 'image73' },
+//     { src: img74, name: 'image74' },
+//     { src: img75, name: 'image75' },
+//     { src: img76, name: 'image76' },
+//     { src: img78, name: 'image78' },
+//     { src: img79, name: 'image79' },
+//     { src: img80, name: 'image80' },
+//     { src: img82, name: 'image82' },
+//     { src: img83, name: 'image83' },
+//     { src: img84, name: 'image84' },
+//     { src: img85, name: 'image85' }
+// ]
 
 const imgMovies = ref([
     img1,
@@ -273,7 +273,7 @@ const classmates = reactive({
         src: img71,
     },
     '倪依琪': {
-        msg: '大家好，我们一起度过了三年，有喜怒哀乐，有悲欢离合，在这里祝大家天天开心，前程似锦，毕业快乐。',
+        msg: '砚海沉潜终聚作星芒万点，且携笔锋裁作云程新篇（我好帅）',
         src: person11,
     },
     '金子涵': {
@@ -321,8 +321,8 @@ const classmates = reactive({
         src: person15,
     },
     '冯煜哲': {
-        msg: '还没过过父亲节',
-        src: img1,
+        msg: '骑马倚斜桥，满楼红袖招',
+        src: person16,
     },
     '章菲涵': {
         msg: '万语难尽涩于口，祈尔繁芜常盛夏愿此去披荆斩棘，诸事顺利，万事顺遂',
@@ -330,7 +330,7 @@ const classmates = reactive({
     },
     '严基瑞': {
         msg: '三年并肩，少年远航。愿携星光，奔赴下一程晴朗。',
-        src: img1,  
+        src: img1,
     },
     '舒湘芙': {
         msg: '阿巴阿巴阿巴',
@@ -367,25 +367,31 @@ const memories = [
     {
         year: '2022 初一',
         events: [
-            { title: '开学报到，第一次见面', images: [img1, img12] },
-            { title: '春游烧烤，集体大笑', images: [img1] },
-            { title: '期末考试，第一次拼搏', images: [img1] }
+            { title: '班主任吴老师 · 带领着我们度过了三年美好时光', images: [img1] },
+            { title: '初入校园 · 第一次班级合影', images: [img3] },
+            { title: '军训 · 朝气蓬勃的我们', images: [img4, img5, img6, img7] },
+            { title: '路遥心欢喜', images: [img12, img13, img14, img15, img16, img17, img18, img19, img20] },
+            { title: '瓷源小镇 · 玩转陶泥', images: [img21, img22, img23, img24, img25, img26, img27, img28, img29, img30, img31, img32, img33, img34, img35, img36, img37, img38, img39, img40, img41, img42, img43, img44, img45, img46, img47, img48, img49] },
+            { title: '凤凰山考古遗址公园', images: [img51, img52, img53] },
         ],
     },
     {
         year: '2023 初二',
         events: [
-            { title: '开学报到，第一次见面', images: [img1] },
-            { title: '春游烧烤，集体大笑', images: [img1] },
-            { title: '期末考试，第一次拼搏', images: [img1] }
+            { title: '米果果小镇 · 整装待发', images: [img54, img55] },
+            { title: '米果果小镇 · 干饭', images: [img56, img57, img58, img59, img60] },
+            { title: '米果果小镇 · 玩', images: [img61, img62, img63, img68, img69, img71] },
+            { title: '鲁镇故里', images: [img72, img73, img74, img75, img76] },
+            { title: '曾记否？班队课', images: [img78, img79, img80] },
+            { title: '元旦 · 校长致辞', images: [img82] },
+            { title: '获奖咯~', images: [img83] },
         ],
     },
     {
         year: '2024 初三',
         events: [
-            { title: '开学报到，第一次见面', images: [img1] },
-            { title: '春游烧烤，集体大笑', images: [img1] },
-            { title: '期末考试，第一次拼搏', images: [img1] }
+            { title: '毕业典礼', images: [img85] },
+            { title: '干净的教室留给未来', images: [img84] }
         ],
     },
 ];
